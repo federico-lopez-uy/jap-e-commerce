@@ -188,3 +188,71 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* Lista de productos */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 40px 0;
+}
+
+.product-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #d1cfc7;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+.product-image-container {
+    width: 15%;
+}
+
+.product-image-container > img {
+    background-color: #c9c5b8;
+    border: 1px solid #a19a86;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #555;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.product-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.product-name, .product-description {
+    background-color: #c9c5b8;
+    border: 1px solid #a19a86;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.9em;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.product-price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    margin-right: 15px;
+    white-space: nowrap;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+
