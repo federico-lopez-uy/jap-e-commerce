@@ -256,3 +256,145 @@ a.custom-card:hover {
     color: black;
 }
 
+/*login*/
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+.login-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.left-panel {
+    background-color: #1a1e24;
+    width: 40%;
+    text-align: center;
+    padding: 20px;
+}
+
+.right-panel {
+    background-color: #142542;
+    width: 60%;
+}
+
+
+.logo-small {
+    margin-bottom: 10px;
+}
+
+.logo-large {
+    text-align: center;
+}
+
+.logo-small .fa-cube, .logo-large .fa-cube {
+    font-size: 3rem;
+    color: #007bff;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.logo-large .fa-cube {
+    font-size: 10rem;
+}
+
+.logo-large .logo-text {
+    font-size: 3rem;
+}
+
+.form-content {
+    width: 100%;
+    max-width: 350px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.form-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.account-prompt {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.create-account-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #ddd;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
