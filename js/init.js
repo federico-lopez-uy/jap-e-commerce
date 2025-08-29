@@ -44,3 +44,7 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+// Mostrar el email del usuario logueado
+const elementoNavEmail = document.querySelector("nav .nav-item:last-child");
+elementoNavEmail.textContent = localStorage.getItem("email");
