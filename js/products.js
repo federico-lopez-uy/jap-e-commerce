@@ -1,38 +1,29 @@
-
-const fetchAutos = async()=> {
-    try {
-        const res = await fetch("https://japceibal.github.io/emercado-api/cats_products/101.json");
-        const data = await res.json();
-        return data.products;
-    } catch(error){
-        console.log("Ha habido un error", error)
-    } 
-}
-
 const rellenarTabla = async()=>{
-    const autos = await fetchAutos();    
-    const contenedorAutos = document.querySelector("main .container");
+    const catID = localStorage.getItem("catID")
+    const res = await getJSONData(`https://japceibal.github.io/emercado-api/cats_products/${catID}.json`);
+    const productos = res.data.products;
+    const contenedorProductos = document.querySelector("main .container");
 
     const listaProductos = document.createElement("section");
     listaProductos.classList.add("product-list");
-    contenedorAutos.appendChild(listaProductos);
+    contenedorProductos.appendChild(listaProductos);
 
 
-    for(const auto of autos){
+    for(const producto of productos){
         const tarjetaProducto = document.createElement("section");
         tarjetaProducto.classList.add("product-card");
         
         tarjetaProducto.innerHTML = `
             <section class="product-image-container">
-                <img src="${auto.image}" alt= "imagen de ${auto.name}">
+                <img src="${producto.image}" alt= "imagen de ${producto.name}">
             </section>
             <section class="product-info-container">
-                <p class="product-name">${auto.name}</p>
-                <p class="product-description">${auto.description}</p>
+                <p class="product-name">${producto.name}</p>
+                <p class="product-description">${producto.description}</p>
             </section>
             <section class="product-price-container">
-                <p class="product-price">$${auto.cost}</p>
-                <p><span>Ventas: </span>${auto.soldCount}</p>
+                <p class="product-price">$${producto.cost}</p>
+                <p><span>Ventas: </span>${producto.soldCount}</p>
             </section>
             <div class="add-to-cart">
                 <i class="fa-solid fa-cart-shopping"></i>
