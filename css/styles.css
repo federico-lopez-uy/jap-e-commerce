@@ -491,3 +491,11 @@ body {
     font-size: 1.1rem;
   }
 }
+
+/* Filtros */
+
+.btn-check:checked + .btn {
+  background-color: #198754;
+  color: #fff;
+  border-color: #198754;
+}
