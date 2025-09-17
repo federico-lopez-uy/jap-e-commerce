@@ -38,7 +38,48 @@
     </div>
   </nav>
   <main class="pb-5 container">
-    <div class="container">
+    <div class="pt-5 row">
+      <div class="col text-end">
+        <div class="container my-4">
+          <div class="row">
+            <!-- Filtros de precio -->
+            <div class="col-md-6">
+              <div class="input-group input-group-sm">
+                <span class="input-group-text">Mín</span>
+                <input type="number" id="rangeFilterCountMin" class="form-control" placeholder="Precio mín">
+                <span class="input-group-text">Máx</span>
+                <input type="number" id="rangeFilterCountMax" class="form-control" placeholder="Precio máx">
+                <button class="btn btn-primary btn-sm" id="rangeFilterCount">Filtrar</button>
+                <button class="btn btn-secondary btn-sm" id="clearRangeFilter">Limpiar</button>
+              </div>
+            </div>
+
+            <!-- Controles de orden -->
+            <div class="col-md-6 text-end">
+              <div class="btn-group btn-group-sm" data-bs-toggle="buttons">
+                <input type="radio" class="btn-check" name="sortOptions" id="sortPriceAsc" value="price-asc">
+                <label class="btn btn-light btn-sm" for="sortPriceAsc">
+                  <i class="fas fa-sort-numeric-up"></i> Precio ↑
+                </label>
+
+                <input type="radio" class="btn-check" name="sortOptions" id="sortPriceDesc" value="price-des">
+                <label class="btn btn-light btn-sm" for="sortPriceDesc">
+                  <i class="fas fa-sort-numeric-down"></i> Precio ↓
+                </label>
+
+                <input type="radio" class="btn-check" name="sortOptions" id="sortByRelevance" checked value="rel-des">
+                <label class="btn btn-light btn-sm" for="sortByRelevance">
+                  <i class="fas fa-fire"></i> Relevancia
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container contenedor">
       <!-- Acá se van agregando dinámicamente los productos -->
     </div>
   </main>
@@ -47,7 +88,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">
