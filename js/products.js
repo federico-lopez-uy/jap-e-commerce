@@ -46,6 +46,10 @@ const actualizarTabla = async () => {
 
   for (const producto of productosFiltradosOrdenados) {
     const tarjetaProducto = document.createElement("section");
+    tarjetaProducto.addEventListener("click", ()=> {
+      localStorage.setItem("product-id", producto.id);
+      window.location.href = "/product-info.html"
+    })
     tarjetaProducto.classList.add("product-card");
 
     tarjetaProducto.innerHTML = `
