@@ -48,7 +48,7 @@ const actualizarTabla = async () => {
     const tarjetaProducto = document.createElement("section");
     tarjetaProducto.addEventListener("click", ()=> {
       localStorage.setItem("product-id", producto.id);
-      window.location.href = "/product-info.html"
+      window.location.href = "product-info.html"
     })
     tarjetaProducto.classList.add("product-card");
 
