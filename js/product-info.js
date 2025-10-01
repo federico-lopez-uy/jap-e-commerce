@@ -1,3 +1,26 @@
+const agregarComentario = ({ user, description, dateTime, score }) => {
+  const contenedorComentarios = document.querySelector(".comments-container");
+
+  const elementoComentario = document.createElement("article");
+  elementoComentario.classList.add("comentario-wrapper");
+  elementoComentario.innerHTML = `
+      <section class="user">
+        <img src='img/icons/user-solid-full.svg'>
+        <h3>${user}</h3>
+      </section>
+      <p>${description}</p>
+      <section class="fecha-valoracion">
+        <p><span class="titulo">Fecha: </span> ${dateTime}</p>
+        <section class="rating-stars">
+          <span class="titulo">Valoración: </span>
+          ${"<img src='img/icons/star-solid-full.svg'>".repeat(score)}
+          ${"<img src='img/icons/star-regular-full.svg'>".repeat(5 - score)}
+        </section>
+      </section>
+    `;
+  contenedorComentarios.appendChild(elementoComentario);
+};
+
 const completarCampos = (datos) => {
   const datosProducto = datos.producto;
   const comentarios = datos.comentarios;
@@ -15,28 +38,7 @@ const completarCampos = (datos) => {
     "product-sold-count"
   ).innerText = `${datosProducto.soldCount} unidades vendidas`;
 
-  const contenedorComentarios = document.querySelector(".comments-container");
-    
-  comentarios.forEach(comentario=> {
-    const elementoComentario = document.createElement("article");
-    elementoComentario.classList.add("comentario-wrapper");
-    elementoComentario.innerHTML = `
-      <section class="user">
-        <img src='img/icons/user-solid-full.svg'>
-        <h3>${comentario.user}</h3>
-      </section>
-      <p>${comentario.description}</p>
-      <section class="fecha-valoracion">
-        <p><span class="titulo">Fecha: </span> ${comentario.dateTime}</p>
-        <section class="rating-stars">
-          <span class="titulo">Valoración: </span>
-          ${"<img src='img/icons/star-solid-full.svg'>".repeat(comentario.score)}
-          ${"<img src='img/icons/star-regular-full.svg'>".repeat(5 - comentario.score)}
-        </section>
-      </section>
-    `;
-    contenedorComentarios.appendChild(elementoComentario);
-  })
+  comentarios.forEach(agregarComentario);
 
   const sideImages = document.getElementById("side-images");
   datosProducto.images.forEach((imgPath) => {
@@ -45,7 +47,9 @@ const completarCampos = (datos) => {
 
     img.addEventListener("click", () => {
       document.getElementById("main-image").src = imgPath;
-      [...document.querySelectorAll("#side-images img")].forEach(img => img.classList.remove("active"))
+      [...document.querySelectorAll("#side-images img")].forEach((img) =>
+        img.classList.remove("active")
+      );
       img.classList.add("active");
     });
 
@@ -66,8 +70,38 @@ const fetchProduct = async () => {
   const resComments = await getJSONData(
     `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`
   );
-  
-  completarCampos({producto: res.data, comentarios: resComments.data});
+
+  completarCampos({ producto: res.data, comentarios: resComments.data });
 };
 
 fetchProduct();
+
+const starLabels = document.querySelectorAll(".star-rating label");
+starLabels.forEach((label) => {
+  const score = Number(label.getAttribute("data-stars"));
+  label.innerHTML = `${"<i class='fas fa-star'></i>".repeat(
+    score
+  )}${"<i class='far fa-star'></i>".repeat(5 - score)}`;
+});
+
+const form = document.getElementById("form-calificacion");
+const comentariosUL = document.getElementById("comentarios-ul");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // evita recargar la página
+
+  const comentario = document.getElementById("comentario").value;
+  const calificacion = document.querySelector(
+    "input[name='calificacion']:checked"
+  );
+
+  const user = localStorage.getItem("email").split("@")[0];
+  agregarComentario({
+    user,
+    description: comentario,
+    dateTime: Date.now(),
+    score: calificacion.value,
+  });
+
+  form.reset();
+});
