@@ -677,3 +677,35 @@ span.titulo {
   flex-direction: column;
   gap: 4px;
 }
+
+/* Estilos para el contenedor principal de la sección */
+.productos-relacionados-container {
+    width: 100%; 
+    width: min(1200px, 80%);
+    margin: 40px auto; 
+}
+
+/* Productos Relacionados */
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+}
+
+.producto-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    cursor: pointer;
+}
+
+.producto-card img {
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.producto-card p {
+    margin: 0; 
+    line-height: 1.2;
+    padding: 0;
+}

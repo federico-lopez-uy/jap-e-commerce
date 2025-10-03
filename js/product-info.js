@@ -21,6 +21,25 @@ const agregarComentario = ({ user, description, dateTime, score }) => {
   contenedorComentarios.appendChild(elementoComentario);
 };
 
+const mostrarProductoRelacionado = (producto)=>{
+  const productContainer = document.querySelector(".grid-productos");
+
+  const productCard = document.createElement("section");
+  productCard.classList.add("producto-card");
+
+  productCard.innerHTML = `
+    <img src='${producto.image}' alt='${producto.name}'/>
+    <p>${producto.name}</p>
+  `
+  productCard.addEventListener("click", ()=> {
+      localStorage.setItem("product-id", producto.id);
+      window.location.href = "product-info.html"
+    })
+
+  productContainer.appendChild(productCard);
+  
+}
+
 const completarCampos = (datos) => {
   const datosProducto = datos.producto;
   const comentarios = datos.comentarios;
@@ -39,6 +58,8 @@ const completarCampos = (datos) => {
   ).innerText = `${datosProducto.soldCount} unidades vendidas`;
 
   comentarios.forEach(agregarComentario);
+
+  datosProducto.relatedProducts.forEach(mostrarProductoRelacionado);
 
   const sideImages = document.getElementById("side-images");
   datosProducto.images.forEach((imgPath) => {
