@@ -47,31 +47,86 @@
         </div>
       </div>
     </nav>
-    <main class="product-container">
-      <section class="images">
-        <aside>
-          <ul id="side-images"></ul>
-        </aside>
+    <main>
+      <section class="product-container">
+        <section class="images">
+          <aside>
+            <ul id="side-images"></ul>
+          </aside>
 
-        <section class="main-image-wrapper">
-          <img id="main-image"></img>
-          <div class="zoom">🔍</div>
-          <div class="arrows">
-            <span>&lt;</span>
-            <span>&gt;</span>
-          </div>
+          <section class="main-image-wrapper">
+            <img id="main-image"></img>
+            <div class="zoom">🔍</div>
+            <div class="arrows">
+              <span>&lt;</span>
+              <span>&gt;</span>
+            </div>
+          </section>
         </section>
-      </section>
       
 
-      <section class="details">
-        <h2 id="product-name"></h2>
-        <h3 id="product-category"></h3>
-        <p class="description" id="product-description"></p>
-        <p class="price" id="product-cost"></p>
-        <button class="add-cart">Agregar al carrito ➕</button>
-        <p class="sold" id="product-sold-count"></p>
+        <section class="details">
+          <h2 id="product-name"></h2>
+          <h3 id="product-category"></h3>
+          <p class="description" id="product-description"></p>
+          <p class="price" id="product-cost"></p>
+          <button class="add-cart">Agregar al carrito ➕</button>
+          <p class="sold" id="product-sold-count"></p>
+        </section>
       </section>
+
+      <section class="comments-container"><h3>Comentarios</h3></section>
+
+      <div class="container mt-5">
+        <div id="nueva-calificacion" class="p-4 border rounded bg-white shadow-sm">
+            <h3 class="mb-3">Deja tu calificación</h3>
+
+            <form id="form-calificacion">
+                <!-- Campo para el comentario -->
+                <div class="mb-3">
+                    <label for="comentario" class="form-label">Tu comentario</label>
+                    <textarea id="comentario" name="comentario" class="form-control" rows="3"
+                        placeholder="Escribe aquí tu opinión..." required></textarea>
+                </div>
+
+                <!-- Calificación con estrellas -->
+                <div class="mb-3 text-center">
+                    <label class="form-label">Tu calificación</label>
+                    <div class="star-rating">
+                      <section>
+                        <input type="radio" id="star1" name="calificacion" value="1" required>
+                        <label for="star1" data-stars="1"></label>
+                      </section>
+                      <section>
+                        <input type="radio" id="star2" name="calificacion" value="2" required>
+                        <label for="star2" data-stars="2"></label>
+                      </section>
+                      <section>
+                        <input type="radio" id="star3" name="calificacion" value="3" required>
+                        <label for="star3" data-stars="3"></label>
+                      </section>
+                      <section>
+                        <input type="radio" id="star4" name="calificacion" value="4" required>
+                        <label for="star4" data-stars="4"></label>
+                      </section>
+                      <section>
+                        <input type="radio" id="star5" name="calificacion" value="5" required>
+                        <label for="star5" data-stars="5"></label>
+                      </section>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+      </div>
+      
+      <div class="productos-relacionados-container">
+        <h3>Productos Relacionados</h2>   
+        <div class="grid-productos"></div>
+    </div>
+
+      
     </main>
 
     <footer class="text-muted">
@@ -95,6 +150,7 @@
         <div></div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/product-info.js"></script>
