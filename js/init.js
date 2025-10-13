@@ -7,9 +7,9 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
- if (!localStorage.getItem("isLoggedIn")) {
+if (!localStorage.getItem("isLoggedIn")) {
       window.location.href = "login.html";
-    }
+}
 
 
 let showSpinner = function(){
@@ -45,6 +45,27 @@ let getJSONData = function(url){
     });
 }
 
+const cerrarSesion = ()=>{
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("email");
+  window.location.href = "login.html";
+}
+
 // Mostrar el email del usuario logueado
 const elementoNavEmail = document.querySelector("nav .nav-item:last-child");
-elementoNavEmail.textContent = localStorage.getItem("email");
+
+const dropdownUser = document.createElement("section");
+dropdownUser.classList.add("dropdown-user", "btn-group");
+dropdownUser.innerHTML = `
+  <button type="button" class="btn btn-secondary">${localStorage.getItem("email")}</button>
+  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="my-profile.html">Editar perfil</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><button class="dropdown-item" onClick="cerrarSesion()">Cerrar sesión</button></li>
+  </ul>
+`
+
+elementoNavEmail.appendChild(dropdownUser);

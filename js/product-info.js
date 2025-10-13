@@ -21,7 +21,7 @@ const agregarComentario = ({ user, description, dateTime, score }) => {
   contenedorComentarios.appendChild(elementoComentario);
 };
 
-const mostrarProductoRelacionado = (producto)=>{
+const mostrarProductoRelacionado = (producto) => {
   const productContainer = document.querySelector(".grid-productos");
 
   const productCard = document.createElement("section");
@@ -30,15 +30,14 @@ const mostrarProductoRelacionado = (producto)=>{
   productCard.innerHTML = `
     <img src='${producto.image}' alt='${producto.name}'/>
     <p>${producto.name}</p>
-  `
-  productCard.addEventListener("click", ()=> {
-      localStorage.setItem("product-id", producto.id);
-      window.location.href = "product-info.html"
-    })
+  `;
+  productCard.addEventListener("click", () => {
+    localStorage.setItem("product-id", producto.id);
+    window.location.href = "product-info.html";
+  });
 
   productContainer.appendChild(productCard);
-  
-}
+};
 
 const completarCampos = (datos) => {
   const datosProducto = datos.producto;
@@ -112,17 +111,34 @@ form.addEventListener("submit", function (event) {
   event.preventDefault(); // evita recargar la página
 
   const comentario = document.getElementById("comentario").value;
-  const calificacion = document.querySelector(
-    "input[name='calificacion']:checked"
-  );
+  const calificacion = Number(document.querySelectorAll(".star.checked").length);
+
+  console.log(calificacion);
+  
 
   const user = localStorage.getItem("email").split("@")[0];
   agregarComentario({
     user,
     description: comentario,
     dateTime: Date.now(),
-    score: calificacion.value,
+    score: calificacion,
   });
 
   form.reset();
+  const stars = document.querySelectorAll(".star");
+  stars.forEach(s=> s.classList.remove("checked"))
+});
+
+const stars = document.querySelectorAll(".star");
+
+stars.forEach((star, index) => {
+  star.addEventListener("click", () => {
+    for (let i = 0; i <= index; i++) {
+      stars[i].classList.add("checked");
+    }
+
+    for (let i = index + 1; i < stars.length; i++) {
+      stars[i].classList.remove("checked");
+    }
+  });
 });
