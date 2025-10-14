@@ -1,3 +1,4 @@
+
 const agregarComentario = ({ user, description, dateTime, score }) => {
   const contenedorComentarios = document.querySelector(".comments-container");
 
@@ -19,6 +20,7 @@ const agregarComentario = ({ user, description, dateTime, score }) => {
       </section>
     `;
   contenedorComentarios.appendChild(elementoComentario);
+  
 };
 
 const mostrarProductoRelacionado = (producto) => {
@@ -93,6 +95,8 @@ const fetchProduct = async () => {
 
   completarCampos({ producto: res.data, comentarios: resComments.data });
 };
+
+
 
 fetchProduct();
 
