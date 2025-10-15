@@ -119,7 +119,6 @@ h1, h2, h3, h4, h5, h6, .jumbotron-heading, .titulo {
   color: var(--color-text);
 }
 
-
 .jumbotron,
 .card-body,
 .container,
@@ -165,6 +164,19 @@ nav ul {
   margin-bottom: 0;
   background-color: #53c0fb;
   background: url("../img/cover_back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
+  font-weight: bold;
+}
+
+body.dark-theme .jumbotron {
+  height: 50vh;
+  padding: 5em inherit;
+  margin-bottom: 0;
+  background-color: #53c0fb;
+  background: url("../img/cover_back_dark.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -345,7 +357,6 @@ a.custom-card:hover {
 .product-image-container > img {
   background-color: #c9c5b8;
   border: 1px solid #a19a86;
-  padding: 20px;
   text-align: center;
   font-size: 0.8em;
   color: #555;
@@ -933,6 +944,15 @@ span.titulo {
   transition: border-bottom-color 0.3s ease;
   padding-left: 10px;
   border-radius: 5px 5px 0 0;
+}
+
+.img-thumbnail{
+  background-color: var(--color-card-bg);
+  border-color: var(--color-card-bg);
+}
+
+.list-group{
+  gap: 16px
 }
 
 .list-group-item {
