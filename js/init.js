@@ -69,3 +69,69 @@ dropdownUser.innerHTML = `
 `
 
 elementoNavEmail.appendChild(dropdownUser);
+
+// === Toggle modo claro / oscuro ===
+
+// Crear el contenedor principal
+const toggleContainer = document.createElement("div");
+toggleContainer.classList.add("theme-toggle");
+toggleContainer.innerHTML = `<div class="circle"></div>`;
+
+// Insertar el toggle justo al lado del email
+elementoNavEmail.parentElement.appendChild(toggleContainer);
+
+// === Estilos dinámicos del toggle ===
+const estiloToggle = document.createElement("style");
+estiloToggle.textContent = `
+  .theme-toggle {
+    width: 50px;
+    height: 26px;
+    background-color: black;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    margin-left: 1rem;
+  }
+
+  .theme-toggle .circle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  body.dark-theme .theme-toggle {
+    background-color: white;
+  }
+
+  body.dark-theme .theme-toggle .circle {
+    transform: translateX(24px);
+    background-color: black;
+  }
+
+
+`;
+document.head.appendChild(estiloToggle);
+
+// === Lógica del toggle ===
+const body = document.body;
+const toggle = toggleContainer;
+
+// Cargar preferencia guardada
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+  body.classList.add("dark-theme");
+} else if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  body.classList.add("dark-theme");
+}
+
+// Alternar tema al hacer clic
+toggle.addEventListener("click", () => {
+  const isDark = body.classList.toggle("dark-theme");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});

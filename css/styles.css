@@ -1,8 +1,133 @@
+/* Variables ya definidas */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-title: #000000;
+  --color-nav-bg: #2e2e2e;
+  --color-nav-text: #ffffff;
+  --color-card-bg: #ffffff;
+  --color-border: #e0e0e0;
+  --color-shadow: rgba(0,0,0,0.1);
+  --color-btn-bg: rgb(180,180,180);
+  --color-btn-text: black;
+  --color-inputs: rgb(221, 221, 221);
+}
+
+.dark-theme {
+  --color-bg: #000000;
+  --color-text: #ffffff;
+  --color-title: #ffffff;
+  --color-nav-bg: #111111;
+  --color-nav-text: #ffffff;
+  --color-card-bg: #1A1E24;
+  --color-border: #333333;
+  --color-shadow: rgba(255,255,255,0.05);
+  --color-btn-bg: #1a1a1a;
+  --color-btn-text: #ffffff;
+  --color-inputs: #272f3b;
+}
+
+/* --- Aplicar variables a toda la página --- */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navbar */
+nav.navbar {
+  background-color: var(--color-nav-bg) !important;
+}
+
+nav.navbar .nav-link,
+nav.navbar .navbar-brand,
+nav.navbar .btn {
+  color: var(--color-nav-text) !important;
+}
+
+/* Cards y secciones */
+.card,
+.jumbotron .container,
+.personal-data-form,
+.product-card,
+.product-name,
+.product-price,
+.product-container,
+.product-description,
+.list-group-item {
+  background-color: var(--color-card-bg)!important;
+  color: var(--color-text)!important;
+  border: 0px!important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Títulos */
+h1, h2, h3, h4, h5, h6, .jumbotron-heading, .titulo {
+  color: var(--color-title);
+}
+
+/* Botones */
+.btn,
+.login-button,
+.actualizar-button,
+.add-cart {
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text)!important;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-check {
+  background-color: var(--color-btn-bg);
+}
+
+/* Hover botones */
+.btn:hover,
+.login-button:hover,
+.actualizar-button:hover,
+.add-cart:hover {
+  opacity: 0.85;
+}
+
+/* Formularios inputs */
+.form-group input,
+.input-linea {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+/* Jumbotron */
+.jumbotron {
+  color: var(--color-text);
+}
+
+/* Alertas */
+.alert {
+  color: var(--color-text);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+}
+
+/* Otros elementos */
+.product-price,
+.sold,
+.rating-stars,
+.star {
+  color: var(--color-text);
+}
+
 .jumbotron,
 .card-body,
 .container,
 .site-header {
   font-family: "Verdana", serif !important;
+}
+
+#nueva-calificacion {
+  background-color: var(--color-bg)!important;
 }
 
 .jumbotron .display-4 {
@@ -39,6 +164,19 @@ nav ul {
   margin-bottom: 0;
   background-color: #53c0fb;
   background: url("../img/cover_back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
+  font-weight: bold;
+}
+
+body.dark-theme .jumbotron {
+  height: 50vh;
+  padding: 5em inherit;
+  margin-bottom: 0;
+  background-color: #53c0fb;
+  background: url("../img/cover_back_dark.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -219,7 +357,6 @@ a.custom-card:hover {
 .product-image-container > img {
   background-color: #c9c5b8;
   border: 1px solid #a19a86;
-  padding: 20px;
   text-align: center;
   font-size: 0.8em;
   color: #555;
@@ -625,7 +762,7 @@ body {
 }
 
 .comentario-wrapper {
-  background-color: #e6e2dc;
+  background-color: var(--color-card-bg);
   box-sizing: border-box;
   padding: 15px;
   border-radius: 15px;
@@ -640,6 +777,7 @@ body {
 .rating-stars img {
   height: 100%;
 }
+
 
 section.user {
   display: flex;
@@ -735,7 +873,7 @@ span.titulo {
 }
 
 .personal-data-form .titulo {
-  color: #003366;
+  color: var(--color-title);
   font-size: 38px;
   font-weight: 700;
   margin-bottom: 50px;
@@ -746,14 +884,24 @@ span.titulo {
 
 .photo-section {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   gap: 40px;
   margin-bottom: 60px;
 }
 
+#lbl-input-foto{
+  display: block;
+  margin-bottom: 6px;
+}
+
+.foto-perfil{
+  width: 100%;
+}
+
 .photo-placeholder {
-  width: 220px;
-  height: 220px;
+  width: 280px;
+  height: 280px;
   background-color: #18161669;
   border-radius: 10px;
   display: flex;
@@ -762,13 +910,6 @@ span.titulo {
   color: #555;
   font-size: 20px;
   font-weight: 600;
-}
-
-.cambiar-foto {
-  color: #555;
-  font-size: 18px;
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 .form-fields {
@@ -782,36 +923,54 @@ span.titulo {
   display: flex;
   flex-direction: column;
 }
+.campo-texto input {
+  background-color: lightslategray;
+
+}
 
 .campo-texto label {
   font-size: 22px;
-  color: #222;
+  color: var(--color-text);
   margin-bottom: 12px;
   font-weight: 600;
 }
 
 .input-linea {
   border: none;
-  border-bottom: 4px solid transparent;
   padding: 15px 0;
   font-size: 22px;
   width: 100%;
   outline: none;
   transition: border-bottom-color 0.3s ease;
-  background-color: #f5f5f5;
   padding-left: 10px;
   border-radius: 5px 5px 0 0;
 }
 
+.img-thumbnail{
+  background-color: var(--color-card-bg);
+  border-color: var(--color-card-bg);
+}
+
+.list-group{
+  gap: 16px
+}
+
+.list-group-item {
+  background-color: var(--color-card-bg);
+}
+
 .input-linea:hover {
   border-bottom-color: #999;
+  background-color: var(--color-inputs);
+  transition: ease 0.3s;
   cursor: text;
 }
 
 .input-linea:focus {
+  background-color: var(--color-inputs);
+  transition: ease 0.3s;
   border-bottom-color: #007bff;
-  background-color: white;
-  box-shadow: 0 1px 0 rgba(0, 123, 255, 0.5);
+  box-shadow: 0 3px 0 rgba(6, 0, 53, 0.459);
 }
 
 .actualizar-button {
@@ -829,7 +988,9 @@ span.titulo {
 
 .actualizar-button:hover {
   background-color: #0056b3;
-  transform: translateY(-2px);
+  transform: scale(1.03);
+  transition: ease-in-out 0.3s;
+
 }
 
 @media (max-width: 900px) {
