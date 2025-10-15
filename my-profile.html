@@ -56,30 +56,33 @@
         <h1 class="titulo">DATOS PERSONALES</h1>
 
         <div class="photo-section">
-            <div class="photo-placeholder">
+            <div class="photo-placeholder" id="placeholder-foto">
             </div>
-            <span class="cambiar-foto">Agregar/Cambiar foto</span>
+            <section>
+              <label for="foto" id="lbl-input-foto">Agregar/Cambiar foto</label>
+              <input type="file" id="foto" required>
+            </section>
         </div>
 
-        <form class="form-fields">
+        <form class="form-fields" autocomplete="off">
             <div class="campo-texto">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" class="input-linea" required>
+                <input type="text" id="nombre" class="input-linea" autocomplete="no" required>
             </div>
             
             <div class="campo-texto">
                 <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" class="input-linea" required>
+                <input type="text" id="apellido" class="input-linea" autocomplete="no" required>
             </div>
 
             <div class="campo-texto">
                 <label for="email">Email</label>
-                <input type="email" id="email" class="input-linea" required>
+                <input type="email" id="email" class="input-linea" autocomplete="no" required>
             </div>
 
             <div class="campo-texto">
                 <label for="telefono">Teléfono de contacto</label>
-                <input type="tel" id="telefono" class="input-linea" required>
+                <input type="tel" id="telefono" class="input-linea" autocomplete="no" required>
             </div>
         </form>
 
