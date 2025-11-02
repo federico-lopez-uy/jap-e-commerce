@@ -70,6 +70,23 @@ dropdownUser.innerHTML = `
 
 elementoNavEmail.appendChild(dropdownUser);
 
+const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+
+const elementoNavCart = document.createElement("button");
+elementoNavCart.className = "btn btn-primary position-relative"
+elementoNavCart.type = "button"
+elementoNavCart.innerHTML = `
+<i class="fa-solid fa-cart-shopping"></i>
+  <span class="badge-carrito position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    ${productosCarrito.length}
+    <span class="visually-hidden">items in cart</span>
+  </span>
+`
+elementoNavCart.addEventListener("click", ()=> window.location.href = "cart.html")
+elementoNavEmail.parentElement.appendChild(elementoNavCart);
+
+
 // === Toggle modo claro / oscuro ===
 
 // Crear el contenedor principal

@@ -1,3 +1,4 @@
+let producto;
 
 const agregarComentario = ({ user, description, dateTime, score }) => {
   const contenedorComentarios = document.querySelector(".comments-container");
@@ -20,7 +21,6 @@ const agregarComentario = ({ user, description, dateTime, score }) => {
       </section>
     `;
   contenedorComentarios.appendChild(elementoComentario);
-  
 };
 
 const mostrarProductoRelacionado = (producto) => {
@@ -93,10 +93,10 @@ const fetchProduct = async () => {
     `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`
   );
 
+  producto = res.data;
   completarCampos({ producto: res.data, comentarios: resComments.data });
+  agregarListenersBoton()
 };
-
-
 
 fetchProduct();
 
@@ -115,10 +115,9 @@ form.addEventListener("submit", function (event) {
   event.preventDefault(); // evita recargar la página
 
   const comentario = document.getElementById("comentario").value;
-  const calificacion = Number(document.querySelectorAll(".star.checked").length);
-
-  console.log(calificacion);
-  
+  const calificacion = Number(
+    document.querySelectorAll(".star.checked").length
+  );
 
   const user = localStorage.getItem("email").split("@")[0];
   agregarComentario({
@@ -130,7 +129,7 @@ form.addEventListener("submit", function (event) {
 
   form.reset();
   const stars = document.querySelectorAll(".star");
-  stars.forEach(s=> s.classList.remove("checked"))
+  stars.forEach((s) => s.classList.remove("checked"));
 });
 
 const stars = document.querySelectorAll(".star");
@@ -146,3 +145,21 @@ stars.forEach((star, index) => {
     }
   });
 });
+
+const agregarListenersBoton = () => {
+  const botonAgregarCarrito = document.querySelector("button.add-cart");
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  if (carrito.filter((p) => p.id == producto.id).length) {
+    botonAgregarCarrito.textContent = "Ver en el carrito";
+    botonAgregarCarrito.addEventListener("click", () => {
+      window.location.href = "cart.html";
+    });
+  } else {
+    botonAgregarCarrito.addEventListener("click", () => {
+      carrito.push({ ...producto, cantidad: 1 });
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      window.location.href = "cart.html";
+    });
+  }
+};
