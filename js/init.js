@@ -97,43 +97,6 @@ toggleContainer.innerHTML = `<div class="circle"></div>`;
 // Insertar el toggle justo al lado del email
 elementoNavEmail.parentElement.appendChild(toggleContainer);
 
-// === Estilos dinámicos del toggle ===
-const estiloToggle = document.createElement("style");
-estiloToggle.textContent = `
-  .theme-toggle {
-    width: 50px;
-    height: 26px;
-    background-color: black;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    padding: 3px;
-    margin-left: 1rem;
-  }
-
-  .theme-toggle .circle {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-  }
-
-  body.dark-theme .theme-toggle {
-    background-color: white;
-  }
-
-  body.dark-theme .theme-toggle .circle {
-    transform: translateX(24px);
-    background-color: black;
-  }
-
-
-`;
-document.head.appendChild(estiloToggle);
-
 // === Lógica del toggle ===
 const body = document.body;
 const toggle = toggleContainer;
