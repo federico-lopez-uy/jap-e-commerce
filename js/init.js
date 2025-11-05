@@ -71,6 +71,10 @@ dropdownUser.innerHTML = `
 elementoNavEmail.appendChild(dropdownUser);
 
 const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let cantidadCarrito = 0;
+productosCarrito.forEach(p => {
+  cantidadCarrito += p.cantidad;
+})
 
 
 const elementoNavCart = document.createElement("button");
@@ -79,7 +83,7 @@ elementoNavCart.type = "button"
 elementoNavCart.innerHTML = `
 <i class="fa-solid fa-cart-shopping"></i>
   <span class="badge-carrito position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    ${productosCarrito.length}
+    ${cantidadCarrito}
     <span class="visually-hidden">items in cart</span>
   </span>
 `
