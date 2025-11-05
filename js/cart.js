@@ -1,16 +1,18 @@
+const badgeCarrito = document.querySelector(".badge-carrito");
+
 function mostrarProductosCarrito() {
   const productosCarrito = JSON.parse(localStorage.getItem("carrito"));
   const contenedorItems = document.querySelector(".cart-items");
   contenedorItems.innerHTML = "";
 
-  if (!productosCarrito.length) {    
+  if (!productosCarrito.length) {
     contenedorItems.innerHTML = `<p class="carrito-vacio">El carrito está vacío</p>`;
   }
 
   let total = 0;
 
   for (producto of productosCarrito) {
-    total += producto.cost * producto.cantidad;    
+    total += producto.cost * producto.cantidad;
 
     const item = document.createElement("div");
     item.classList.add("cart-item");
@@ -22,26 +24,22 @@ function mostrarProductosCarrito() {
         <div class="col-precio">${producto.cost} ${producto.currency}</div>
         <div class="col-cantidad">
             <div class="quantity-control">
-            <button class="qty-btn minus" onclick="actualizarCantidad(false, ${
-              producto.id
-            })">
+            <button class="qty-btn minus" onclick="actualizarCantidad(false, ${producto.id
+      })">
                 <i class="fa-solid fa-minus"></i>
             </button>
             <input type="number" value=${producto.cantidad} min="1" disabled/>
-            <button class="qty-btn plus" onclick="actualizarCantidad(true, ${
-              producto.id
-            })">
+            <button class="qty-btn plus" onclick="actualizarCantidad(true, ${producto.id
+      })">
                 <i class="fa-solid fa-plus"></i>
             </button>
             </div>
         </div>
-        <div class="col-subtotal">${producto.cost * producto.cantidad} ${
-      producto.currency
-    }</div>
+        <div class="col-subtotal">${producto.cost * producto.cantidad} ${producto.currency
+      }</div>
         <div class="col-accion">
-            <button class="delete-btn" title="Eliminar" onclick="eliminarProducto(${
-              producto.id
-            })">
+            <button class="delete-btn" title="Eliminar" onclick="eliminarProducto(${producto.id
+      })">
             <i class="fa-solid fa-trash"></i>
             </button>
         </div>    
@@ -54,17 +52,24 @@ function mostrarProductosCarrito() {
 }
 
 function actualizarCantidad(esAgregar, idProducto) {
+
   const productosCarrito = JSON.parse(localStorage.getItem("carrito"));
-  const carritoActualizado = productosCarrito.map((producto) =>
-    producto.id == idProducto
-      ? {
-          ...producto,
-          cantidad: esAgregar
-            ? producto.cantidad + 1
-            : Math.max(producto.cantidad - 1, 0),
-        }
-      : producto
-  );
+
+  const carritoActualizado = productosCarrito.map((producto) => {
+    if (producto.id != idProducto) return producto;
+    return (
+      {
+        ...producto,
+        cantidad: esAgregar
+          ? producto.cantidad + 1
+          : Math.max(producto.cantidad - 1, 0),
+      }
+    )
+    
+
+  });
+
+  badgeCarrito.textContent = carritoActualizado.reduce((acc, producto) => acc + producto.cantidad, 0);
 
   localStorage.setItem("carrito", JSON.stringify(carritoActualizado));
   mostrarProductosCarrito();
@@ -78,11 +83,11 @@ function eliminarProducto(idProducto) {
   localStorage.setItem("carrito", JSON.stringify(carritoActualizado));
   mostrarProductosCarrito();
 
-  const badgeCarrito = document.querySelector(".badge-carrito");
-  badgeCarrito.textContent = carritoActualizado.length;
+
+  badgeCarrito.textContent = carritoActualizado.reduce((acc, producto) => acc + producto.cantidad, 0);
 
 }
 
 mostrarProductosCarrito();
 
-document.getElementById("continuar-comprando").addEventListener("click", ()=> window.location.href = "products.html")
+document.getElementById("continuar-comprando").addEventListener("click", () => window.location.href = "products.html")

@@ -71,6 +71,10 @@ dropdownUser.innerHTML = `
 elementoNavEmail.appendChild(dropdownUser);
 
 const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let cantidadCarrito = 0;
+productosCarrito.forEach(p => {
+  cantidadCarrito += p.cantidad;
+})
 
 
 const elementoNavCart = document.createElement("button");
@@ -79,7 +83,7 @@ elementoNavCart.type = "button"
 elementoNavCart.innerHTML = `
 <i class="fa-solid fa-cart-shopping"></i>
   <span class="badge-carrito position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    ${productosCarrito.length}
+    ${cantidadCarrito}
     <span class="visually-hidden">items in cart</span>
   </span>
 `
@@ -96,43 +100,6 @@ toggleContainer.innerHTML = `<div class="circle"></div>`;
 
 // Insertar el toggle justo al lado del email
 elementoNavEmail.parentElement.appendChild(toggleContainer);
-
-// === Estilos dinámicos del toggle ===
-const estiloToggle = document.createElement("style");
-estiloToggle.textContent = `
-  .theme-toggle {
-    width: 50px;
-    height: 26px;
-    background-color: black;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    padding: 3px;
-    margin-left: 1rem;
-  }
-
-  .theme-toggle .circle {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-  }
-
-  body.dark-theme .theme-toggle {
-    background-color: white;
-  }
-
-  body.dark-theme .theme-toggle .circle {
-    transform: translateX(24px);
-    background-color: black;
-  }
-
-
-`;
-document.head.appendChild(estiloToggle);
 
 // === Lógica del toggle ===
 const body = document.body;
