@@ -1,102 +1,187 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>eMercado - Todo lo que busques está aquí</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="categories.html">Categorías</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sell.html">Vender</a>
-            </li>
-            <li class="nav-item"></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <main class="cart-wrapper">
-      <div class="shopping-cart">
-        <div class="cart-header">
-          <div class="col-producto">Producto</div>
-          <div class="col-precio">Precio</div>
-          <div class="col-cantidad">Cantidad</div>
-          <div class="col-subtotal">Sub total</div>
-          <div class="col-accion"></div>
-        </div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
 
-        <section class="cart-items">
-          <!-- Acá se van agregando los items dinámicamente -->
-        </section>
-
-        <div class="cart-footer">
-          <button class="btn btn-primary btn-continue" id="continuar-comprando">
-            <i class="fa-solid fa-arrow-left"></i> Continuar comprando
-          </button>
-          <div class="total-info">
-            <span id="total"></span>
-            <button class="btn btn-success btn-pagar">
-              <i class="fa-solid fa-credit-card"></i> Pagar
-            </button>
-          </div>
-        </div>
-      </div>
-    </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
-    <div id="spinner-wrapper">
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item"></li>
+        </ul>
       </div>
     </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/cart.js"></script>
-  </body>
+  </nav>
+  <main class="cart-wrapper">
+    <div class="shopping-cart">
+
+      <div class="section-title">
+        <nav class="checkout-steps" aria-label="Proceso de compra">
+          <button type="button" class="step-item step-active" data-step="carrito" aria-current="step">
+            <span class="step-label">Carrito</span>
+          </button>
+          <button type="button" class="step-item step-locked" data-step="envio" aria-disabled="true">
+            <span class="step-label">Tipo de Envío</span>
+          </button>
+          <button type="button" class="step-item step-locked" data-step="direccion" aria-disabled="true">
+            <span class="step-label">Dirección de Envío</span>
+          </button>
+          <button type="button" class="step-item step-locked" data-step="pago" aria-disabled="true">
+            <span class="step-label">Forma de Pago</span>
+          </button>
+          <button type="button" class="step-item step-locked" data-step="costos" aria-disabled="true">
+            <span class="step-label">Costos</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="checkout-content">
+
+        <!-- Paso 1: Carrito -->
+        <div class="step-content" data-step="carrito">
+          <div class="cart-header">
+            <div class="col-producto">Producto</div>
+            <div class="col-precio">Precio</div>
+            <div class="col-cantidad">Cantidad</div>
+            <div class="col-subtotal">Sub total</div>
+            <div class="col-accion"></div>
+          </div>
+
+          <section class="cart-items">
+            <!-- Acá se van agregando los items dinámicamente -->
+          </section>
+        </div>
+
+        <!-- Paso 2: Tipo de Envío -->
+        <div class="step-content" data-step="envio" style="display:none;">
+          <h3>Elige el tipo de envío</h3>
+          <div class="shipping-options">
+            <div class="shipping-card">
+              <h4>Standard</h4>
+              <p>12 a 15 días (5%)</p>
+            </div>
+            <div class="shipping-card">
+              <h4>Express</h4>
+              <p>5 a 8 días (7%)</p>
+            </div>
+            <div class="shipping-card">
+              <h4>Premium</h4>
+              <p>2 a 5 días (15%)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 3: Dirección de Envío -->
+        <div class="step-content" data-step="direccion" style="display:none;">
+          <h3>Ingrese su dirección de envío</h3>
+          <form class="shipping-form">
+            <div class="mb-2">
+              <label>Departamento</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="mb-2">
+              <label>Localidad</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="mb-2">
+              <label>Calle</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="mb-2">
+              <label>Número</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="mb-2">
+              <label>Esquina</label>
+              <input type="text" class="form-control">
+            </div>
+          </form>
+        </div>
+
+        <!-- Paso 4: Forma de Pago -->
+        <div class="step-content" data-step="pago" style="display:none;">
+          <h3>Seleccione su forma de pago</h3>
+          <div class="payment-options">
+            <button class="btn btn-outline-primary">Tarjeta de Crédito</button>
+            <button class="btn btn-outline-primary">Tarjeta de Débito</button>
+            <button class="btn btn-outline-primary">Efectivo</button>
+          </div>
+        </div>
+
+        <!-- Paso 5: Costos -->
+        <div class="step-content" data-step="costos" style="display:none;">
+          <h3>Resumen de costos</h3>
+          <ul>
+            <li>Total productos: $<span id="total-productos">0</span></li>
+            <li>Envío: $<span id="costo-envio">0</span></li>
+            <li>Descuentos: $<span id="descuentos">0</span></li>
+            <li>Total a pagar: $<span id="total">0</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="cart-footer">
+        <button class="btn btn-primary btn-continue" id="continuar-comprando">
+          <i class="fa-solid fa-arrow-left"></i> Continuar comprando
+        </button>
+        <div class="total-info">
+          <span id="total"></span>
+          <button class="btn btn-success btn-pagar">
+            Siguiente <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+
 </html>

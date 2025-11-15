@@ -27,6 +27,35 @@
   --color-inputs: #272f3b;
 }
 
+/* Estilos para los steps del checkout */
+.checkout-steps {
+  display: flex;
+  background-color:#004799 ;
+  gap: 10px;
+}
+
+.step-item {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: #004799; /* azul oscuro */
+  color: #ffffff; /* letras blancas */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.step-item.step-active {
+  background-color: #1e90ff; /* azul más claro para el step activo */
+  color: #ffffff; /* letras blancas */
+}
+
+.step-item.step-locked {
+  cursor: not-allowed;
+}
+
+
 .theme-toggle {
   width: 50px;
   height: 26px;
@@ -56,9 +85,6 @@ body.dark-theme .theme-toggle .circle {
   transform: translateX(24px);
   background-color: black;
 }
-
-
-
 
 /* --- Aplicar variables a toda la página --- */
 body {
