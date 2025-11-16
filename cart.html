@@ -52,8 +52,8 @@
           <button type="button" class="step-item step-locked" data-step="pago" aria-disabled="true">
             <span class="step-label">Forma de Pago</span>
           </button>
-          <button type="button" class="step-item step-locked" data-step="costos" aria-disabled="true">
-            <span class="step-label">Costos</span>
+          <button type="button" class="step-item step-locked" data-step="resumen" aria-disabled="true">
+            <span class="step-label">Resúmen</span>
           </button>
         </nav>
       </div>
@@ -77,18 +77,22 @@
 
         <!-- Paso 2: Tipo de Envío -->
         <div class="step-content" data-step="envio" style="display:none;">
-          <h3>Elige el tipo de envío</h3>
+          <h3>Selecciona el tipo de envío que prefieras</h3>
+          <h5>El costo se calcula en base al subtotal del carrito</h5>
           <div class="shipping-options">
-            <div class="shipping-card">
+            <div class="shipping-card activo" id="standard">
               <h4>Standard</h4>
+              <p>Económico, ideal si no tenés apuro</p>
               <p>12 a 15 días (5%)</p>
             </div>
-            <div class="shipping-card">
+            <div class="shipping-card" id="express">
               <h4>Express</h4>
+              <p>Entrega más rápida y seguimiento online</p>
               <p>5 a 8 días (7%)</p>
             </div>
-            <div class="shipping-card">
+            <div class="shipping-card" id="premium">
               <h4>Premium</h4>
+              <p>Prioridad máxima y embalaje reforzado</p>
               <p>2 a 5 días (15%)</p>
             </div>
           </div>
@@ -97,26 +101,27 @@
         <!-- Paso 3: Dirección de Envío -->
         <div class="step-content" data-step="direccion" style="display:none;">
           <h3>Ingrese su dirección de envío</h3>
-          <form class="shipping-form">
+          <form class="shipping-form" id="shipping-form">
             <div class="mb-2">
               <label>Departamento</label>
-              <input type="text" class="form-control">
+              <!-- Acá ponemos new password porque autocomplete off no funciona bien en Google Chrome -->
+              <input type="text" class="form-control" id="departamento" required autocomplete="new-password">
             </div>
             <div class="mb-2">
               <label>Localidad</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" id="localidad" required autocomplete="new-password">
             </div>
             <div class="mb-2">
               <label>Calle</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" id="calle" required autocomplete="new-password">
             </div>
             <div class="mb-2">
               <label>Número</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" id="numero" required autocomplete="new-password">
             </div>
             <div class="mb-2">
               <label>Esquina</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" id="esquina" required autocomplete="new-password">
             </div>
           </form>
         </div>
@@ -125,20 +130,25 @@
         <div class="step-content" data-step="pago" style="display:none;">
           <h3>Seleccione su forma de pago</h3>
           <div class="payment-options">
-            <button class="btn btn-outline-primary">Tarjeta de Crédito</button>
-            <button class="btn btn-outline-primary">Tarjeta de Débito</button>
-            <button class="btn btn-outline-primary">Efectivo</button>
+            <button class="btn btn-outline-primary" id="credito"><i class="fa-solid fa-credit-card"></i>Tarjeta de Crédito</button>
+            <button class="btn btn-outline-primary" id="debito"><i class="fa-solid fa-credit-card"></i>Tarjeta de Débito</button>
+            <button class="btn btn-outline-primary activo" id="efectivo"><i class="fa-solid fa-money-bill-wave"></i>Efectivo</button>
+            <button class="btn btn-outline-primary" id="transferencia"><i class="fa-solid fa-building-columns"></i>Transferencia Bancaria</button>
           </div>
         </div>
 
-        <!-- Paso 5: Costos -->
-        <div class="step-content" data-step="costos" style="display:none;">
-          <h3>Resumen de costos</h3>
+        <!-- Paso 5: Resúmen -->
+        <div class="step-content" data-step="resumen" style="display:none;">
+          <h3>Resúmen de Compra</h3>
           <ul>
-            <li>Total productos: $<span id="total-productos">0</span></li>
-            <li>Envío: $<span id="costo-envio">0</span></li>
-            <li>Descuentos: $<span id="descuentos">0</span></li>
-            <li>Total a pagar: $<span id="total">0</span></li>
+            <li><b>Total productos: </b><span id="total-productos"></span></li>
+            <li><b>Tipo de envío: </b><span id="tipo-envio"></span></li>
+            <li><b>Costo de envío: </b><span id="costo-envio"></span></li>
+            <li><b>Dirección de envío: </b><span id="direccion-envio"></span></li>
+            <li><b>Fecha estimada de llegada: </b><span id="fecha-estimada"></span></li>
+            <li><b>Forma de pago: </b><span id="forma-pago"></span></li>
+            <li><b>Total a pagar: </b><span id="total"></span></li>
+            
           </ul>
         </div>
 
@@ -150,7 +160,7 @@
         </button>
         <div class="total-info">
           <span id="total"></span>
-          <button class="btn btn-success btn-pagar">
+          <button class="btn btn-success btn-pagar" form="shipping-form" type="submit">
             Siguiente <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>

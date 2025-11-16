@@ -27,35 +27,6 @@
   --color-inputs: #272f3b;
 }
 
-/* Estilos para los steps del checkout */
-.checkout-steps {
-  display: flex;
-  background-color:#004799 ;
-  gap: 10px;
-}
-
-.step-item {
-  flex: 1;
-  padding: 10px 15px;
-  background-color: #004799; /* azul oscuro */
-  color: #ffffff; /* letras blancas */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.step-item.step-active {
-  background-color: #1e90ff; /* azul más claro para el step activo */
-  color: #ffffff; /* letras blancas */
-}
-
-.step-item.step-locked {
-  cursor: not-allowed;
-}
-
-
 .theme-toggle {
   width: 50px;
   height: 26px;
@@ -1112,6 +1083,92 @@ main.cart-wrapper {
   border-radius: 8px;
   overflow: hidden;
 }
+
+.shipping-options {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.shipping-card {
+    width: 200px;
+    aspect-ratio: 9 / 11;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 5px 2px 6px 0px #aeaeae;
+}
+
+.shipping-card.activo {
+  background-color: lightgray;
+}
+
+.shipping-card > h4 {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 20px 0;
+  background-color: #004799;
+  color: white;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: fit-content;
+  margin: 30px auto;
+}
+
+.payment-options > button{
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+}
+
+.payment-options > button.activo{
+  background-color: #1e90ff;
+}
+
+/* Estilos para los steps del checkout */
+.checkout-steps {
+  display: flex;
+  background-color:#004799 ;
+  gap: 10px;
+}
+
+.step-content {
+  padding: 40px 0 20px;
+}
+
+.step-content > h3, .step-content > h5 {
+  text-align: center;
+}
+
+.step-item {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: #004799; /* azul oscuro */
+  color: #ffffff; /* letras blancas */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.step-item.step-active {
+  background-color: #1e90ff; /* azul más claro para el step activo */
+  color: #ffffff; /* letras blancas */
+}
+
+.step-item.step-locked {
+  background-color: gray;
+}
+
 
 /* Cabecera */
 .cart-header {
