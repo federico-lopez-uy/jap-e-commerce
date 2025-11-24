@@ -6,7 +6,7 @@ let precioMaximo = Infinity;
 const inicializarProductos = async () => {
   const catID = localStorage.getItem("catID");
   const res = await getJSONData(
-    `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`
+    `${PRODUCTS_URL}/${catID}`
   );
   productos = res.data.products;
 
