@@ -187,8 +187,37 @@ btnAnterior.addEventListener("click", () => {
 });
 
 // Función placeholder para finalizar compra
-function finalizarCompra() {
-  alert("Compra finalizada!");
+
+async function finalizarCompra() {
+    // 1. Obtener los items del carrito
+    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    if (items.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+    }
+
+    try {
+        // 2. Enviar al backend
+        const response = await fetch("http://localhost:3000/cart", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items })
+        });
+
+        const result = await response.json();
+
+        // 3. Confirmación
+        if (response.ok) {
+            alert("Compra finalizada y guardada en la base de datos.");
+        } else {
+            alert("Error: " + result.error);
+        }
+
+    } catch (error) {
+        console.error("Error al enviar carrito:", error);
+        alert("No se pudo contactar con el servidor.");
+    }
 }
 
 function mostrarProductosCarrito() {
