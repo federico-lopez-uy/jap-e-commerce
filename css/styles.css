@@ -139,6 +139,10 @@ h6,
   border-color: var(--color-border);
 }
 
+#login-title{
+  color: white;
+}
+
 /* Jumbotron */
 .jumbotron {
   color: var(--color-text);
