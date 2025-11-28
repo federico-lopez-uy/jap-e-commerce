@@ -87,10 +87,10 @@ const completarCampos = (datos) => {
 const fetchProduct = async () => {
   const productId = localStorage.getItem("product-id");
   const res = await getJSONData(
-    `https://japceibal.github.io/emercado-api/products/${productId}.json`
+    `${PRODUCT_INFO_URL}/${productId}`
   );
   const resComments = await getJSONData(
-    `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`
+    `${PRODUCT_INFO_COMMENTS_URL}/${productId}`
   );
 
   producto = res.data;

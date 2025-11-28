@@ -188,6 +188,8 @@ btnAnterior.addEventListener("click", () => {
 
 // Función placeholder para finalizar compra
 function finalizarCompra() {
+  localStorage.setItem("carrito", JSON.stringify([]));
+  window.location.href = "/cart.html"
   alert("Compra finalizada!");
 }
 

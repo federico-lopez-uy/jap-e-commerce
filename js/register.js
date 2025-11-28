@@ -3,8 +3,14 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
+  const password2 = document.getElementById("password2").value.trim();
 
-  const res = await fetch("http://localhost:3000/auth/login", {
+  if (password !== password2) {
+    alert("Las contraseñas no coinciden");
+    return;
+  }
+
+  const res = await fetch("http://localhost:3000/auth/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -12,11 +18,10 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
   const data = await res.json();
 
-  if (data.token) {
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("email", email);
-    window.location.href = "index.html";
+  if (data.ok) {
+    alert("Usuario registrado. Ahora puedes iniciar sesión.");
+    window.location.href = "login.html";
   } else {
-    alert("Credenciales incorrectas.");
+    alert(data.error || "Error al registrarte.");
   }
 });
